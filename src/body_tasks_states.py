@@ -1,5 +1,5 @@
 def clean_state_name(state_name):
-	return state_name.replace('task-', '')
+	return state_name.lower()
 
 # Config
 def print_config(workers = None):
@@ -24,19 +24,14 @@ def print_values(workers = None, api_url = None):
 	data = get_data('tasks', api_url)
 	
 	counters = dict([(key, 0) for key in TASK_STATES])
-	for task_name, task_data in data.iteritems():
-		for entry in task_data:
-			if not entry.get('state', None):
-				continue
+	for task_name, task_data in data:
+		state = task_data['state']
+		hostname = task_data['worker']['hostname']
+		if workers and hostname not in workers:
+			continue
 			
-			state = entry.get('state', None)
-			hostname = entry.get('hostname', None)
-			
-			if workers and hostname not in workers:
-				continue
-			
-			counters[state] += 1
-			
+		counters[state] += 1
+
 	for name in TASK_STATES:
 		name_cleaned = clean_state_name(name)
 		value = counters[name]

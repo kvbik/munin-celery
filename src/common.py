@@ -16,11 +16,12 @@ URL_ENDPOINTS = {
 		'task_details': '/api/task/name/%s',
 }
 TASK_STATES = (
-			'task-accepted',
-			'task-received',
-			'task-succeeded',
-			'task-failed',
-			'task-retried',
+			'PENDING',
+			'STARTED',
+			'SUCCESS',
+			'FAILURE',
+			'RETRY',
+			'REVOKED',
 )
 
 def get_data(what, api_url, *args):
