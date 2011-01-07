@@ -28,6 +28,11 @@ For example:
 
 This would monitor the number of task for a task with name "myapp.tasks.SendEmailTask" and "myapp2.tasks.FetchUserDataTask".
 
+If tasks variable is not set or set to "all", number of all the tasks is monitored.
+
+  [celery_tasks]
+	 env.tasks all
+
 =head1 MAGIC MARKERS
 
   #%# family=manual
