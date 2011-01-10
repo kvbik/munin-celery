@@ -22,6 +22,7 @@ TASK_STATES = (
 			'FAILURE',
 			'RETRY',
 			'REVOKED',
+			'RECEIVED',
 )
 
 def get_data(what, api_url, *args):
